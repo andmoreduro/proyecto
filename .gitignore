@@ -1,0 +1,9 @@
+.ropeproject
+
+# Python
+.venv
+**/__pycache__
+
+# Typst
+templates/*/*.typ
+templates/*/*.pdf

@@ -1,0 +1,4 @@
+
+[submodule "templates/APA"]
+	path = templates/APA
+	url = https://github.com/jassielof/typst-templates.git
