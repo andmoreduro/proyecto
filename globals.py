@@ -12,3 +12,5 @@ output_name = input_name
 fonts_path = os.path.join(fonts_name)
 input_path = os.path.join(template_path, f"{input_name}.typ")
 output_path = os.path.join(template_path, f"{output_name}.pdf")
+typst_process_name = "typst"
+typst_process_arguments = ["watch", input_path, output_path, "--font-path", fonts_path]

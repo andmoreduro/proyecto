@@ -7,12 +7,13 @@ from globals import (
     default_course,
     default_instructor,
     default_title,
-    input_path,
-    output_path,
+    input_path
 )
 from system import write_to_file
 from typst import TypstCoverPage, TypstDocument, TypstSections
 from widgets.core import MultiLineTextInputGroup, SingleLineTextInputGroup
+from globals import typst_process_arguments
+from globals import typst_process_name
 
 
 class CoverPage(QWidget):
@@ -107,8 +108,8 @@ class InputSection(QWidget):
         super().__init__()
 
         self.typst_process = QProcess(self)
-        self.typst_process.setProgram("typst")
-        self.typst_process.setArguments(["watch", input_path, output_path])
+        self.typst_process.setProgram(typst_process_name)
+        self.typst_process.setArguments(typst_process_arguments)
 
         self.setLayout(QVBoxLayout())
 
