@@ -103,7 +103,10 @@ class PDFViewer(QWidget):
         else:
             # File doesn't exist - watch the directory instead
             directory = os.path.dirname(self.pdf_path)
-            if os.path.exists(directory) and directory not in self.file_watcher.directories():
+            if (
+                os.path.exists(directory)
+                and directory not in self.file_watcher.directories()
+            ):
                 self.file_watcher.addPath(directory)
 
         # Connect to both file and directory change signals
@@ -120,7 +123,10 @@ class PDFViewer(QWidget):
     def get_view_state(self) -> PDFViewerViewState:
         navigator = self.pdf_view.pageNavigator()
         current_view_state = PDFViewerViewState(
-            navigator.currentPage(), navigator.currentLocation(), navigator.currentZoom())
+            navigator.currentPage(),
+            navigator.currentLocation(),
+            navigator.currentZoom(),
+        )
         return current_view_state
 
     def restore_view_state(self, state: PDFViewerViewState):

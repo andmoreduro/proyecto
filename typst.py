@@ -1,11 +1,23 @@
 from datetime import datetime
 
-from globals import (default_affiliation, default_author, default_course,
-                     default_instructor, default_title)
+from globals import (
+    default_affiliation,
+    default_author,
+    default_course,
+    default_instructor,
+    default_title,
+)
 
 
 class TypstCoverPage:
-    def __init__(self, title: str = "", author: str = "", affiliation: str = "", course: str = "", instructor: str = ""):
+    def __init__(
+        self,
+        title: str = "",
+        author: str = "",
+        affiliation: str = "",
+        course: str = "",
+        instructor: str = "",
+    ):
         self.set_title(title)
         self.set_author(author)
         self.set_affiliation(affiliation)
