@@ -4,7 +4,9 @@ from PyQt6.QtWidgets import QSizePolicy, QSpacerItem, QVBoxLayout, QWidget
 from globals import (
     default_affiliation,
     default_author,
+    default_content,
     default_course,
+    default_due_date,
     default_instructor,
     default_title,
     input_path,
@@ -20,7 +22,8 @@ class CoverPage(QWidget):
     def __init__(self, parent):
         super().__init__(parent)
 
-        self.setLayout(QVBoxLayout())
+        layout = QVBoxLayout()
+        self.setLayout(layout)
 
         self.title_input_group = SingleLineTextInputGroup("Title", default_title)
         self.author_input_group = SingleLineTextInputGroup("Author", default_author)
@@ -31,14 +34,18 @@ class CoverPage(QWidget):
         self.instructor_input_group = SingleLineTextInputGroup(
             "Instructor", default_instructor
         )
+        self.due_date_input_group = SingleLineTextInputGroup(
+            "Due Date", default_due_date
+        )
 
-        self.layout().addWidget(self.title_input_group)
-        self.layout().addWidget(self.author_input_group)
-        self.layout().addWidget(self.affiliation_input_group)
-        self.layout().addWidget(self.course_input_group)
-        self.layout().addWidget(self.instructor_input_group)
+        layout.addWidget(self.title_input_group)
+        layout.addWidget(self.author_input_group)
+        layout.addWidget(self.affiliation_input_group)
+        layout.addWidget(self.course_input_group)
+        layout.addWidget(self.instructor_input_group)
+        layout.addWidget(self.due_date_input_group)
 
-        self.layout().addItem(
+        layout.addItem(
             QSpacerItem(1, 1, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
         )
 
@@ -50,6 +57,9 @@ class CoverPage(QWidget):
         self.course_input_group.input.textChanged.connect(self._on_course_input_changed)
         self.instructor_input_group.input.textChanged.connect(
             self._on_instructor_input_changed
+        )
+        self.due_date_input_group.input.textChanged.connect(
+            self._on_due_date_input_changed
         )
 
         self.typst_cover_page = TypstCoverPage()
@@ -74,20 +84,23 @@ class CoverPage(QWidget):
         self.typst_cover_page.set_instructor(text)
         self.parent()._delay_update_typst_file()
 
+    def _on_due_date_input_changed(self, text):
+        self.typst_cover_page.set_due_date(text)
+        self.parent()._delay_update_typst_file()
+
 
 class Sections(QWidget):
     def __init__(self, parent):
         super().__init__(parent)
 
-        self.setLayout(QVBoxLayout())
+        layout = QVBoxLayout()
+        self.setLayout(layout)
 
-        self.section_input_group = MultiLineTextInputGroup(
-            "Content", "Write here whatever you need to write."
-        )
+        self.section_input_group = MultiLineTextInputGroup("Content", default_content)
 
-        self.layout().addWidget(self.section_input_group)
+        layout.addWidget(self.section_input_group)
 
-        self.layout().addItem(
+        layout.addItem(
             QSpacerItem(1, 1, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
         )
 
@@ -111,13 +124,14 @@ class InputSection(QWidget):
         self.typst_process.setProgram(typst_process_name)
         self.typst_process.setArguments(typst_process_arguments)
 
-        self.setLayout(QVBoxLayout())
+        layout = QVBoxLayout()
+        self.setLayout(layout)
 
         self.cover_page = CoverPage(self)
         self.sections = Sections(self)
 
-        self.layout().addWidget(self.cover_page)
-        self.layout().addWidget(self.sections)
+        layout.addWidget(self.cover_page)
+        layout.addWidget(self.sections)
 
         self.typst_document = TypstDocument(
             self.cover_page.typst_cover_page, self.sections.typst_sections
