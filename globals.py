@@ -1,10 +1,10 @@
 import os
 
-default_title = "Título"
-default_author = "Andrés Felipe Moreno Durango"
-default_affiliation = "Universidad Manuela Beltrán"
-default_course = "Proyecto de Investigación"
-default_instructor = "Hector Miguel Vargas García"
+default_title = "<TITLE>"
+default_author = "<AUTHOR>"
+default_affiliation = "<AFFILIATION>"
+default_course = "<COURSE>"
+default_instructor = "<INSTRUCTOR>"
 template_path = os.path.join("templates", "APA")
 fonts_name = "fonts"
 input_name = "main"
