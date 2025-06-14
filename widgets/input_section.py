@@ -7,13 +7,13 @@ from globals import (
     default_course,
     default_instructor,
     default_title,
-    input_path
+    input_path,
+    typst_process_arguments,
+    typst_process_name,
 )
 from system import write_to_file
 from typst import TypstCoverPage, TypstDocument, TypstSections
 from widgets.core import MultiLineTextInputGroup, SingleLineTextInputGroup
-from globals import typst_process_arguments
-from globals import typst_process_name
 
 
 class CoverPage(QWidget):
