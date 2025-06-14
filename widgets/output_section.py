@@ -12,11 +12,12 @@ class OutputSection(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.setLayout(QVBoxLayout())
+        layout = QVBoxLayout()
+        self.setLayout(layout)
 
         self.pdf_viewer = PDFViewer(output_path)
 
-        self.layout().addWidget(self.pdf_viewer)
+        layout.addWidget(self.pdf_viewer)
 
 
 class PDFViewerViewState:
@@ -33,14 +34,15 @@ class PDFViewer(QWidget):
         self.pending_view_state = None
         self.pdf_path = pdf_path
 
-        self.setLayout(QVBoxLayout())
+        layout = QVBoxLayout()
+        self.setLayout(layout)
 
         self.document = QPdfDocument(self)
         self.pdf_view = QPdfView(self)
         self.pdf_view.setDocument(self.document)
         self.pdf_view.setPageMode(QPdfView.PageMode.MultiPage)
 
-        self.layout().addWidget(self.pdf_view)
+        layout.addWidget(self.pdf_view)
 
         self.document.statusChanged.connect(self._on_document_status_changed)
 
