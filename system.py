@@ -4,7 +4,7 @@ from typing import Optional
 
 def write_to_file(file_path: str, content: str):
     try:
-        with open(file_path, "w") as file:
+        with open(file_path, "w", encoding="utf-8") as file:
             file.write(content)
     except Exception as e:
         print(f"Error writing to file: {e}")
