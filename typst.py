@@ -9,12 +9,28 @@ from globals import (
     default_title,
 )
 
-special_characters = [r"\"", "#", "$", "/", "=", r"\\", "+", "*", "~", r"\]", r"\[", "-", "_", "<", ">"]
+special_characters = [
+    r"\"",
+    "#",
+    "$",
+    "/",
+    "=",
+    r"\\",
+    "+",
+    "*",
+    "~",
+    r"\]",
+    r"\[",
+    "-",
+    "_",
+    "<",
+    ">",
+]
+
 
 def sanitize(text: str) -> str:
     text = re.sub(f"[{"".join(special_characters)}]", r"\\\g<0>", text)
     return text
-
 
 
 class TypstCoverPage:

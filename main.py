@@ -13,13 +13,14 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Aplicación de Proyecto de Investigación")
 
         self.container = QWidget()
-        self.container.setLayout(QHBoxLayout())
+        containerLayout = QHBoxLayout()
+        self.container.setLayout(containerLayout)
 
         self.input_section = InputSection()
         self.output_section = OutputSection()
 
-        self.container.layout().addWidget(self.input_section)
-        self.container.layout().addWidget(self.output_section)
+        containerLayout.addWidget(self.input_section)
+        containerLayout.addWidget(self.output_section)
 
         self.setCentralWidget(self.container)
 
