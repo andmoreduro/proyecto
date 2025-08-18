@@ -7,3 +7,8 @@
 # Typst
 templates/*/*.typ
 templates/*/*.pdf
+
+# PyInstaller
+dist/
+build/
+*.spec
