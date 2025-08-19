@@ -20,5 +20,5 @@ architecture = platform.machine()
 if architecture == "AMD64":
     architecture = "x86_64"
 executable_extension = ".exe" if os_name == "Windows" else ""
-typst_process_name = f"bin/{architecture}/{os_name}/typst-0.13.1{executable_extension}"
+typst_process_name = f"bin/{architecture}/{os_name}/typst{executable_extension}"
 typst_process_arguments = ["watch", input_path, output_path, "--font-path", fonts_path]
