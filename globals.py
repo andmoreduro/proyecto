@@ -1,4 +1,5 @@
 import os
+import platform
 
 default_title = "<TITLE>"
 default_author = "<AUTHOR>"
@@ -14,5 +15,8 @@ output_name = input_name
 fonts_path = os.path.join(fonts_name)
 input_path = os.path.join(template_path, f"{input_name}.typ")
 output_path = os.path.join(template_path, f"{output_name}.pdf")
-typst_process_name = "typst"
+os_name = platform.system()
+architecture = platform.machine()
+executable_extension = ".exe" if os_name == "Windows" else ""
+typst_process_name = f"bin/{architecture}/{os_name}/typst-0.13.1{executable_extension}"
 typst_process_arguments = ["watch", input_path, output_path, "--font-path", fonts_path]
