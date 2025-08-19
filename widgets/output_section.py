@@ -124,6 +124,8 @@ class PDFViewer(QWidget):
 
     def get_view_state(self) -> PDFViewerViewState:
         navigator = self.pdf_view.pageNavigator()
+        if navigator is None:
+            return PDFViewerViewState(0, QPointF(0, 0), 1.0)
         current_view_state = PDFViewerViewState(
             navigator.currentPage(),
             navigator.currentLocation(),
@@ -133,4 +135,6 @@ class PDFViewer(QWidget):
 
     def restore_view_state(self, state: PDFViewerViewState):
         navigator = self.pdf_view.pageNavigator()
+        if navigator is None:
+            return PDFViewerViewState(0, QPointF(0, 0), 1.0)
         navigator.jump(state.page, state.location, state.zoom)

@@ -112,8 +112,8 @@ class TypstSections:
     def __str__(self) -> str:
         return f"{self.__content}"
 
-    def set_content(self, content) -> None:
-        self.__content = content
+    def set_content(self, content: str) -> None:
+        self.__content: str = content
 
 
 class TypstDocument:
